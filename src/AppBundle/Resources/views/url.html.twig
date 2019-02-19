@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <section id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Enter Your Url:</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-container">
+                        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {% for flash_message in app.session.flashBag.get('url') %}
+                        <div class="flash-notice">
+                            <div class="alert alert-info">
+                                <strong>Generated short url is:</strong> <a
+                                        href="{{ app.request.getSchemeAndHttpHost() }}/{{ 'generateUrl' }}/{{ flash_message }}">{{ app.request.getSchemeAndHttpHost() }}
+                                    /{{ 'generateUrl' }}/{{ flash_message }}</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block mapjavascripts %}
+
+{% endblock %}

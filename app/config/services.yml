@@ -1,0 +1,19 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+
+    # add more services, or override services that need manual wiring
+    # AppBundle\Service\ExampleService:
+    #     arguments:
+    #         $someArgument: 'some_value'
+    app.url_service:
+        class: AppBundle\Service\UrlService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    app.shortener:
+        class:   AppBundle\Utility\Shorten
+        # call a static method
+        factory: ['AppBundle\Utility\Shorten', create]
